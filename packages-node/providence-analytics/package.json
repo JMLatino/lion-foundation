@@ -1,0 +1,81 @@
+{
+  "name": "providence-analytics",
+  "version": "0.14.1",
+  "description": "Providence is the 'All Seeing Eye' that measures effectivity and popularity of software. Release management will become highly efficient due to an accurate impact analysis of (breaking) changes",
+  "license": "MIT",
+  "author": "ing-bank",
+  "homepage": "https://github.com/ing-bank/lion/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ing-bank/lion.git",
+    "directory": "packages-node/providence-analytics"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./src/cli": "./src/cli/index.js",
+    "./utils.js": "./src/program/utils/index.js",
+    "./analyzers": "./src/program/analyzers/index.js",
+    "./docs/*": "./docs/*"
+  },
+  "main": "./src/index.js",
+  "bin": {
+    "providence": "./src/cli/index.mjs"
+  },
+  "files": [
+    "dashboard/src",
+    "src"
+  ],
+  "scripts": {
+    "dashboard": "node ./dashboard/src/server.js --serve-from-package-root",
+    "match-lion-imports": "npm run providence analyze match-imports --search-target-collection @lion-targets --reference-collection @lion-references",
+    "providence": "node --max-old-space-size=8192 ./src/cli/index.mjs",
+    "publish-docs": "node ../../packages-node/publish-docs/src/cli.js --github-url https://github.com/ing-bank/lion/ --git-root-dir ../../",
+    "prepublishOnly": "npm run publish-docs",
+    "test:node": "mocha './test-node/**/*.test.js'",
+    "test:node:e2e": "mocha './test-node/program/**/*.e2e.js' --timeout 60000",
+    "test:node:watch": "npm run test:node --watch"
+  },
+  "dependencies": {
+    "@babel/core": "^7.10.1",
+    "@babel/parser": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-syntax-export-default-from": "^7.18.6",
+    "@babel/plugin-syntax-import-assertions": "^7.18.6",
+    "@babel/register": "^7.5.5",
+    "@babel/traverse": "^7.5.5",
+    "@babel/types": "^7.9.0",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@typescript-eslint/typescript-estree": "^3.0.0",
+    "anymatch": "^3.1.1",
+    "chalk": "^4.1.0",
+    "commander": "^2.20.0",
+    "deepmerge": "^4.0.0",
+    "es-dev-server": "^1.57.1",
+    "es-module-lexer": "^0.3.6",
+    "glob": "^7.1.6",
+    "htm": "^3.0.3",
+    "inquirer": "^7.0.0",
+    "is-negated-glob": "^1.0.0",
+    "lit-element": "~2.4.0",
+    "mock-require": "^3.0.3",
+    "ora": "^3.4.0",
+    "parse5": "^5.1.1",
+    "read-package-tree": "5.3.1",
+    "semver": "^7.5.2",
+    "typescript": "~4.8.4"
+  },
+  "keywords": [
+    "analysis",
+    "impact",
+    "insight",
+    "metrics",
+    "providence",
+    "quality",
+    "release management",
+    "semver",
+    "software"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
